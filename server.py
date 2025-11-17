@@ -47,7 +47,6 @@ def get_llm_res(user_query, sim_embeddings):
     return response.choices[0].message
 
 
-
 # vytvoreni embedding a ulozeni do databaze
 # get_embedding("pandas")
 while True:
