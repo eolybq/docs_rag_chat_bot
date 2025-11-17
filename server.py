@@ -62,27 +62,27 @@ def get_llm_res(user_query, sim_embeddings):
 
 
 # vytvoreni embedding a ulozeni do databaze
-# get_embedding("pandas")
+get_embedding("pandas")
 
 
 
 
-# TODO dodělat frontend_dev aby response vypsal jako MD
-# a oddelat nadpis stranky
-@app.post("/query")
-async def main(request: Request):
-    data = await request.json()
-    user_query = data.get("prompt")
-
-    sim_embeddings = search_similar(convert_embedding(user_query))
-    print(sim_embeddings)
-    out_data = get_llm_res(user_query, sim_embeddings)
-    print(out_data)
-
-    return {"response": out_data.content}
-
-
-if __name__ == "__main__":
-    uvicorn.run("server:app", host="0.0.0.0", port=8000, reload=True)
-
-
+# # TODO dodělat frontend_dev aby response vypsal jako MD
+# # a oddelat nadpis stranky
+# @app.post("/query")
+# async def main(request: Request):
+#     data = await request.json()
+#     user_query = data.get("prompt")
+#
+#     sim_embeddings = search_similar(convert_embedding(user_query))
+#     print(sim_embeddings)
+#     out_data = get_llm_res(user_query, sim_embeddings)
+#     print(out_data)
+#
+#     return {"response": out_data.content}
+#
+#
+# if __name__ == "__main__":
+#     uvicorn.run("server:app", host="0.0.0.0", port=8000, reload=True)
+#
+#

@@ -34,7 +34,7 @@ def get_chunk(h_tag, main_title, max_len=4000, overlap=500):
 
 def get_pages(path):
     files_list = []
-    base_path = Path("../html") / path
+    base_path = Path("html") / path
     for file in base_path.rglob("*.html"):
         if str(file) not in ("index.html", "whatsnew.html", "genindex.html", "release.html"):
             files_list.append(str(file))
