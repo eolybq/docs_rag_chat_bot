@@ -9,6 +9,8 @@ Project creates API endpoint which when called, convert user query to embedding 
 Project utilize OpenAI python library api endpoints in order to work with locally runned embedding models in LMStudio and then to prompt relevant RAG retrieval data to GeminiAPI. Both of these API are used through OpenAI library.  
 
 
+Project created in collaboration with my [brother](https://github.com/SwytDrymz)
+
 ## Tools used
 - Python (SQLAlchemy, OpenAI, FastAPI, BeatifulSoup4)
 - PostgreSQL (Supabase - pgvector)
