@@ -28,9 +28,8 @@ def save_bulk_embeddings(bulk_embedding_list, doc_name):
 
     table_name = f"rag_docs.{doc_name}"
 
-    # TODO zmenit tabulku na {table_name}  -> urcuje se v server.py tabulka
     sql = text(f"""
-        INSERT INTO rag_docs.test (main_title, chunk_title, embedding, content)
+        INSERT INTO {table_name} (main_title, chunk_title, embedding, content)
         VALUES (:main_title, :chunk_title, :embedding, :content)
     """)
 

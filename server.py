@@ -64,8 +64,7 @@ doc_name = "pandas"
 
 
 # vytvoreni embedding a ulozeni do databaze
-# TODO nejaky podivny pocet batches pri ukladani -> 0/44 melo by byt vyssi??? ale logika a prace s novou struc dobre
-get_embedding(doc_name)
+# TODO nejaky podivny pocet batches pri ukladani -> 0/144 melo by byt vyssi??? ale logika a prace s novou struc dobre
 
 
 # # TODO dodělat frontend_dev aby response vypsal jako MD
@@ -85,7 +84,8 @@ get_embedding(doc_name)
 #     return {"response": out_data.content}
 #
 #
-# if __name__ == "__main__":
+if __name__ == "__main__":
+    get_embedding(doc_name)
 #     uvicorn.run("server:app", host="0.0.0.0", port=8000, reload=True)
 #
 #
