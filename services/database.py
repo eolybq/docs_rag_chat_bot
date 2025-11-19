@@ -42,7 +42,7 @@ def save_bulk_embeddings(bulk_embedding_list, doc_name, db_batch_size=8):
         for batch in _chunks(bulk_embedding_list, db_batch_size):
             conn.execute(sql, batch)
 
-    print("")
+    print(f"SAVED TO DB {table_name}: \n {[(x.get("main_title"), x.get("chunk_title")) for x in bulk_embedding_list]}")
 
 
 def search_similar(query_embedding, doc_name, k=5):
