@@ -13,7 +13,7 @@ IPADRESS = os.getenv("ipadress")
 client = OpenAI(base_url=IPADRESS, api_key="lm-studio")
 
 
-BATCH_SIZE = 32
+BATCH_SIZE = 64
 CHECKPOINT_FILE = "checkpoints.json"
 
 def convert_embedding_batch(contents):
@@ -36,16 +36,6 @@ def load_checkpoint(doc_name):
         print(f"No checkpoint found for {doc_name}")
         return {"last_index": -1}
 
-def save_checkpoint(doc_name, last_index):
-    data = {}
-    if os.path.exists(CHECKPOINT_FILE):
-        with open(CHECKPOINT_FILE, "r") as f:
-            data = json.load(f)
-    else:
-        print(f"No checkpoint found for {doc_name}")
-    data[doc_name] = {"last_index": last_index}
-    with open(CHECKPOINT_FILE, "w") as f:
-        json.dump(data, f)
 
 
 # Prevod kazdeho chunk na embedding
@@ -85,7 +75,5 @@ def get_embedding(doc_name):
             })
 
         # bulk insert do DB
-        save_bulk_embeddings(bulk_data, doc_name)
-
-        # aktualizace checkpointu
-        save_checkpoint(doc_name, start_index + i + len(batch) - 1)
+        # TODO a vzit return funkce a poslat vys -> nakonec az userovi ve forme nejake hlasky
+        save_bulk_embeddings(bulk_data, doc_name, start_index + i)
