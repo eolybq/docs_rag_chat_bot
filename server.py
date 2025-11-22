@@ -67,8 +67,8 @@ def run_embedding_pipeline(doc_name):
 
 
 @app.get("/get_tables")
-async def get_tables():
-    tables = get_tables
+async def get_all_tables():
+    tables = get_tables()
     return tables
 
 # Unzip a nahrani zip souboru a prevod na embedding
