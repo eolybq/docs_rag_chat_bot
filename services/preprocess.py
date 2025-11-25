@@ -2,11 +2,11 @@ from bs4 import BeautifulSoup
 from pathlib import Path
 
 
-# vytvoreni dict chunks s contents a titles chunku
 def is_h_tag(tag):
     return tag.name and tag.name.startswith("h") and tag.name[1].isdigit()  # and tag.name[1] != "1"
 
 
+# vytvoreni dict chunks s contents a titles chunku
 def get_chunk(h_tag, main_title, max_len=4000, overlap=500):
     chunk = {
         "main_title": main_title,
@@ -50,6 +50,7 @@ def get_chunks_list(path):
         for script in soup(["script", "style"]):
             script.decompose()
 
+        # MOZNA ODDELAT? jakoze muze vynechavat soubory co nemaji H1
         if not soup.find("h1"):
             continue
 
