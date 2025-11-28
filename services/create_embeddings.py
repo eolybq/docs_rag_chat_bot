@@ -76,4 +76,6 @@ def get_embedding(doc_name):
 
         # bulk insert do DB
         # TODO a vzit return funkce a poslat vys -> nakonec az userovi ve forme nejake hlasky
-        save_bulk_embeddings(bulk_data, doc_name, start_index + i)
+        status = save_bulk_embeddings(bulk_data, doc_name, start_index + i)
+        if status.status != "success":
+            return status

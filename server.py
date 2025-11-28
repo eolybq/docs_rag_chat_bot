@@ -63,7 +63,8 @@ def get_llm_res(user_query, sim_embeddings):
 
 
 def run_embedding_pipeline(doc_name):
-    get_embedding(doc_name)
+    status = get_embedding(doc_name)
+    return status
 
 
 @app.get("/get_tables")
