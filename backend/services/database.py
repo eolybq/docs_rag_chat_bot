@@ -9,7 +9,7 @@ load_dotenv()
 USER = os.getenv("DB_USER")
 PASSWORD = os.getenv("PASSWORD")
 HOST = os.getenv("HOST")
-PORT = os.getenv("PORT")
+PORT = os.getenv("DB_PORT")
 DBNAME = os.getenv("DBNAME")
 
 DATABASE_URL = f"postgresql+psycopg2://{USER}:{PASSWORD}@{HOST}:{PORT}/{DBNAME}?sslmode=require"
