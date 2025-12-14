@@ -12,13 +12,13 @@ load_dotenv()
 
 origins = [
     "http://localhost:8080",
-    "https://muj-rag-frontend.render.com",
+    "https://docs-rag-chat-bot.onrender.com",
 ]
 
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
