@@ -1,7 +1,14 @@
+from argparse import ArgumentParser
 from services.create_embeddings import get_embedding
 from services.database import create_table
 
-def run_embedding_pipeline(doc_name):
+def run_embedding_pipeline():
+    parser = ArgumentParser()
+    parser.add_argument('doc_name', type=str, default="", help='Name of desired documentation to process')
+    args = parser.parse_args()
+
+    doc_name = args.doc_name
+
     status_table = create_table(doc_name)
     if status_table["status"] != "success":
         print(f'Failed to create table for {doc_name}: {status_table["error"]}')
@@ -19,5 +26,4 @@ def run_embedding_pipeline(doc_name):
 
 
 if __name__ == "__main__":
-    doc_name = "pandas"
-    run_embedding_pipeline(doc_name)
+    run_embedding_pipeline()
