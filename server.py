@@ -73,11 +73,9 @@ async def get_response(request: Request):
     data = await request.json()
     user_query = data.get("prompt")
     doc_name = data.get("doc_name")
-    # NOTE Mozna napsat na tvrdo idk
-    embedd_model = data.get("embedd_model")
 
 # TODO zkontrtolovat zdali funguje s novou convert embedding_batch funcki misto conver embedding - umele prevadim na list a pak beru prvni prvek
-    query_emb = convert_embedding_batch([user_query], embedd_model=embedd_model)[0]
+    query_emb = convert_embedding_batch([user_query])[0]
     # TODO vzit return status funkce a poslat vys -> nakonec az userovi  ve forme nejake hlasky
     sim_embeddings = search_similar(query_emb, doc_name).results
     print(sim_embeddings)

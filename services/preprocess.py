@@ -28,7 +28,7 @@ def get_chunk(h_tag, main_title, max_len=4000, overlap=500):
     for i, start in enumerate(range(0, len(chunk["content"]), step)):
         yield {
             "main_title": chunk["main_title"],
-            "chunk_title": f"{chunk["chunk_title"]} ({i + 1})",
+            "chunk_title": f'{chunk["chunk_title"]} ({i + 1})',
             "content": chunk["content"][start:start + max_len]
         }
 

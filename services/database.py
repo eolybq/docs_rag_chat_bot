@@ -1,4 +1,5 @@
 from sqlalchemy import create_engine, text
+from urllib.parse import quote_plus
 from dotenv import load_dotenv
 import json
 import os
@@ -8,11 +9,12 @@ load_dotenv()
 
 USER = os.getenv("USER")
 PASSWORD = os.getenv("PASSWORD")
+ENCODED_PASSWORD = quote_plus(PASSWORD)
 HOST = os.getenv("HOST")
 PORT = os.getenv("PORT")
 DBNAME = os.getenv("DBNAME")
 
-DATABASE_URL = f"postgresql+psycopg2://{USER}:{PASSWORD}@{HOST}:{PORT}/{DBNAME}?sslmode=require"
+DATABASE_URL = f"postgresql+psycopg2://{USER}:{ENCODED_PASSWORD}@{HOST}:{PORT}/{DBNAME}?sslmode=require"
 engine = create_engine(DATABASE_URL)
 
 CHECKPOINT_FILE = "checkpoints.json"
@@ -43,7 +45,7 @@ def create_table(doc_name):
 def get_tables():
     sql = text(f"""
         SELECT
-            table_name, table_type
+            table_name
         FROM
             information_schema.tables
         WHERE
@@ -53,7 +55,7 @@ def get_tables():
     try:
         with engine.begin() as conn:
             result = conn.execute(sql).fetchall()
-            tables = [row['table_name'] for row in result]
+            tables = [row for row in result[0]]
     except Exception as e:
         print("Error getting tables: ", e)
         return {"status": "error", "error": str(e)}
@@ -107,7 +109,7 @@ def save_bulk_embeddings(bulk_embedding_list, doc_name, start_index, db_batch_si
                     # aktualizace checkpointu
                     save_checkpoint(doc_name, start_index + i + len(batch) - 1)
 
-            print(f"SAVED TO DB {table_name}: \n {[(x.get("main_title"), x.get("chunk_title")) for x in bulk_embedding_list]}")
+            print(f'SAVED TO DB {table_name}: \n {[(x.get("main_title"), x.get("chunk_title")) for x in bulk_embedding_list]}')
             return {"status": "success"}
 
         except Exception as e:
