@@ -3,7 +3,7 @@ import React from 'react';
 interface DocumentSelectorProps {
   selectedDoc: string;
   onDocChange: (doc: string) => void;
-  availableDocs: string[];
+  availableDocs;
   isLoading: boolean;
 }
 

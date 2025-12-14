@@ -1,10 +1,10 @@
-
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Message } from './types';
 import Header from './components/Header';
 import ChatMessage from './components/ChatMessage';
 import ChatInput from './components/ChatInput';
 import DocumentSelector from './components/DocumentSelector';
+import 'highlight.js/styles/atom-one-dark.css';
 
 const API_BASE_URL = 'http://localhost:8000';
 
@@ -39,7 +39,8 @@ const App: React.FC = () => {
           throw new Error(`API error: ${response.status}`);
         }
         const data = await response.json();
-        const docList = Array.isArray(data) ? data : data.tables || [];
+
+        const docList = Array.isArray(data.tables) ? data.tables : data.tables || [];
         setAvailableDocs(docList);
       } catch (error) {
         console.error('Failed to fetch available documents:', error);
