@@ -1,5 +1,5 @@
 # RAG documentation ChatBOT
-- App is live at https://docs-rag-chat-bot.onrender.com
+- App is live on render at https://docs-rag-chat-bot.onrender.com
 
 **Supported docs:**
 - Pandas
@@ -24,6 +24,7 @@ Project created in collaboration with my [brother](https://github.com/SwytDrymz)
 ## Tools used
 - Python (SQLAlchemy, OpenAI, FastAPI, BeatifulSoup4)
 - PostgreSQL (Supabase - pgvector)
+- Docker + Render
 - text-embedding-3-large 3072 dim
 - React (Vite)
 
